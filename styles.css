@@ -1,0 +1,343 @@
+/* Carga de fuentes desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto:wght@400&display=swap');
+
+/* General */
+body {
+    font-family: 'Roboto', sans-serif; /* Fuente principal */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+}
+
+/* Contenedor Principal */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Cabecera */
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px 0;
+}
+
+header .logo h1 {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif; /* Fuente para el logo/título */
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: right;
+}
+
+header nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif; /* Fuente para los enlaces del menú */
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: #f39c12;
+}
+
+header nav ul li a.active {
+    color: #f39c12;
+}
+
+/* Sección Principal (Hero) */
+.hero {
+    background-color: #2980b9;
+    color: white;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.hero h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+.hero .btn {
+    background-color: #f39c12;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.hero .btn:hover {
+    background-color: #d35400;
+}
+
+/* Productos */
+.productos {
+    padding: 50px 0;
+    background-color: #ecf0f1;
+}
+
+.productos h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.productos .productos-lista {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.productos .producto {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    margin-bottom: 30px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.productos .producto img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.productos .producto h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    margin-top: 15px;
+}
+
+.productos .producto p {
+    font-size: 1rem;
+    color: #7f8c8d;
+    margin-top: 10px;
+}
+
+.productos .producto .btn {
+    background-color: #2980b9;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.productos .producto .btn:hover {
+    background-color: #1d6ca1;
+}
+
+/* Descripción Oculta por Defecto */
+.producto .descripcion {
+    display: none;
+    margin-top: 15px;
+    color: #7f8c8d;
+}
+
+/* Sección Recetas */
+.recetas {
+    padding: 50px 0;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.recetas h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.recetas p {
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+.recetas .btn {
+    background-color: #2980b9;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.recetas .btn:hover {
+    background-color: #1d6ca1;
+}
+
+/* Formulario de Contacto */
+.contacto {
+    padding: 50px 0;
+    background-color: #ecf0f1;
+}
+
+.contacto h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.contacto form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.contacto form label {
+    font-size: 1.1rem;
+    font-family: 'Roboto', sans-serif;
+    display: block;
+    margin-top: 10px;
+}
+
+.contacto form input,
+.contacto form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contacto form button {
+    background-color: #2980b9;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.contacto form button:hover {
+    background-color: #1d6ca1;
+}
+
+/* Pie de página (Footer) */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Media Queries para Responsividad */
+
+/* Para pantallas grandes */
+@media (max-width: 1200px) {
+    header .logo h1 {
+        font-size: 2rem;
+    }
+
+    .productos .producto {
+        width: 45%;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .productos h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Para pantallas medianas */
+@media (max-width: 768px) {
+    .productos .productos-lista {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .productos .producto {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .productos h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Para pantallas pequeñas (móviles) */
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
+    header .logo h1 {
+        font-size: 1.5rem;
+    }
+
+    header nav ul li a {
+        font-size: 0.9rem;
+    }
+
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+
+    .productos h2 {
+        font-size: 1.5rem;
+    }
+
+    .contacto form input,
+    .contacto form textarea {
+        font-size: 0.9rem;
+    }
+
+    footer p {
+        font-size: 0.9rem;
+    }
+}

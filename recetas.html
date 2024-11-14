@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beer & Beer - Recetas de Cerveza</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script> <!-- Vinculamos el archivo JS -->
+</head>
+<body>
+    <!-- Cabecera -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Beer & Beer</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="recetas.html" class="active">Recetas</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sección Principal - Hero Image -->
+    <section id="hero">
+        <div class="hero-content">
+            <h2>Bienvenidos a Beer & Beer</h2>
+            <p>¡Descubre las mejores recetas para crear tus propias cervezas artesanales!</p>
+            <a href="#recetas" class="btn">Ver Recetas</a>
+        </div>
+    </section>
+
+    <main>
+        <!-- Recetas -->
+        <section id="recetas">
+            <div class="container">
+                <h2>Recetas de Cervezas Artesanales</h2>
+                
+                <!-- Receta Pale Ale -->
+                <div class="receta">
+                    <h3>Receta de Cerveza Pale Ale</h3>
+                    <div class="video">
+                        <h4>Video de la Receta</h4>
+                        <iframe width="600" height="400" src="https://youtu.be/niYq7WTU6ls" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <button class="btn-toggle" onclick="toggleDetails('paleAle')">Ver Ingredientes e Instrucciones</button>
+                    <div id="paleAle" class="detalles" style="display: none;">
+                        <h4>Ingredientes:</h4>
+                        <ul>
+                            <li>4 kg de Malta Pale</li>
+                            <li>100 g de Lúpulo Cascade</li>
+                            <li>1 paquete de Levadura</li>
+                            <li>25 L de Agua</li>
+                        </ul>
+                        <h4>Instrucciones:</h4>
+                        <ol>
+                            <li>Calentar el agua a 68°C.</li>
+                            <li>Agregar la malta y mantener la temperatura durante 60 minutos.</li>
+                            <li>Hervir y agregar el lúpulo.</li>
+                            <li>Enfriar y agregar la levadura.</li>
+                            <li>Fermentar durante 2 semanas.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Receta IPA -->
+                <div class="receta">
+                    <h3>Receta de Cerveza IPA</h3>
+                    <div class="video">
+                        <h4>Video de la Receta</h4>
+                        <iframe width="600" height="400" src="https://www.youtube.com/embed/TU_ID_DEL_VIDEO_IPA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <button class="btn-toggle" onclick="toggleDetails('ipa')">Ver Ingredientes e Instrucciones</button>
+                    <div id="ipa" class="detalles" style="display: none;">
+                        <h4>Ingredientes:</h4>
+                        <ul>
+                            <li>4.5 kg de Malta Pale</li>
+                            <li>100 g de Lúpulo Citra</li>
+                            <li>50 g de Lúpulo Simcoe</li>
+                            <li>1 paquete de Levadura American Ale</li>
+                            <li>25 L de Agua</li>
+                        </ul>
+                        <h4>Instrucciones:</h4>
+                        <ol>
+                            <li>Calentar el agua a 70°C.</li>
+                            <li>Agregar la malta y mantener la temperatura durante 90 minutos.</li>
+                            <li>Hervir y agregar los lúpulos.</li>
+                            <li>Enfriar rápidamente y agregar la levadura.</li>
+                            <li>Fermentar durante 10-14 días a temperatura controlada.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Receta Stout -->
+                <div class="receta">
+                    <h3>Receta de Cerveza Stout</h3>
+                    <div class="video">
+                        <h4>Video de la Receta</h4>
+                        <iframe width="600" height="400" src="https://www.youtube.com/embed/TU_ID_DEL_VIDEO_STOUT" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <button class="btn-toggle" onclick="toggleDetails('stout')">Ver Ingredientes e Instrucciones</button>
+                    <div id="stout" class="detalles" style="display: none;">
+                        <h4>Ingredientes:</h4>
+                        <ul>
+                            <li>5 kg de Malta Pale</li>
+                            <li>500 g de Malta Chocolate</li>
+                            <li>100 g de Lúpulo East Kent Goldings</li>
+                            <li>1 paquete de Levadura Ale</li>
+                            <li>25 L de Agua</li>
+                        </ul>
+                        <h4>Instrucciones:</h4>
+                        <ol>
+                            <li>Calentar el agua a 65°C.</li>
+                            <li>Agregar la malta y mantener la temperatura durante 70 minutos.</li>
+                            <li>Hervir y agregar el lúpulo.</li>
+                            <li>Enfriar y agregar la levadura.</li>
+                            <li>Fermentar durante 3 semanas para obtener un sabor más profundo.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Beer & Beer. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
