@@ -6,6 +6,8 @@
     <title>Beer & Beer</title>
     <!-- Carga de las fuentes desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <!-- Carga de Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
         /* Estilo para mostrar/ocultar detalles */
@@ -63,20 +65,31 @@
 
     <!-- Cabecera (Header) -->
     <header>
-        <div class="container">
-            <div class="logo">
-                <h1>Beer & Beer</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#home">Inicio</a></li>
-                    <li><a href="#productos">Productos</a></li>
-                    <li><a href="#recetas">Recetas</a></li>
-                    <li><a href="#reseñas">Reseñas</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Beer & Beer</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#home">Inicio <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#productos">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#recetas">Recetas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#reseñas">Reseñas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
                 </ul>
-            </nav>
-        </div>
+            </div>
+        </nav>
     </header>
 
     <!-- Sección Principal (Hero) -->
@@ -93,42 +106,7 @@
         <div class="container">
             <h2>Nuestros Productos</h2>
             <div class="productos-lista">
-                <!-- Producto 1 -->
-                <div class="producto" data-price="1500">
-                    <img src="images/PaleALe.jpg" alt="Cerveza Pale Ale">
-                    <h3>Cerveza Pale Ale</h3>
-                    <p>Una cerveza ligera y refrescante con notas afrutadas.</p>
-                    <span class="precio">$1500</span>
-                    <button class="btn">Ver más</button>
-                    <div class="detalles">
-                        <p>Esta cerveza Pale Ale tiene un sabor fresco y afrutado. Ideal para una tarde calurosa, su amargor es moderado, lo que la hace muy fácil de beber.</p>
-                    </div>
-                    <button class="btn-agregar">Agregar al Carrito</button>
-                </div>
-                <!-- Producto 2 -->
-                <div class="producto" data-price="1800">
-                    <img src="images/CervezaIpa.jpg" alt="Cerveza IPA">
-                    <h3>Cerveza IPA</h3>
-                    <p>Intensa y amarga, con aromas cítricos y resinosos.</p>
-                    <span class="precio">$1800</span>
-                    <button class="btn">Ver más</button>
-                    <div class="detalles">
-                        <p>La IPA (India Pale Ale) es una cerveza con mucho carácter, famosa por su amargor y sus sabores afrutados y cítricos. Ideal para los amantes de las cervezas intensas.</p>
-                    </div>
-                    <button class="btn-agregar">Agregar al Carrito</button>
-                </div>
-                <!-- Producto 3 -->
-                <div class="producto" data-price="2000">
-                    <img src="images/CervezaStout.jpg" alt="Cerveza Stout">
-                    <h3>Cerveza Stout</h3>
-                    <p>Oscura y cremosa, con sabor a chocolate y café.</p>
-                    <span class="precio">$2000</span>
-                    <button class="btn">Ver más</button>
-                    <div class="detalles">
-                        <p>La Stout es una cerveza oscura y densa, con notas de café y chocolate. Ideal para los que disfrutan de cervezas con sabores más intensos y complejos.</p>
-                    </div>
-                    <button class="btn-agregar">Agregar al Carrito</button>
-                </div>
+                <!-- Aquí se generarán los productos dinámicamente con JS -->
             </div>
         </div>
     </section>
@@ -165,33 +143,10 @@
     </footer>
 
     <!-- Incluir el archivo JavaScript -->
-    <script>
-        // Obtener todos los productos
-        const productos = document.querySelectorAll('.producto');
-        let carrito = [];
-        const carritoCount = document.getElementById('carrito-count');
-        const carritoTotal = document.getElementById('carrito-total');
-
-        // Función para actualizar el carrito
-        function actualizarCarrito() {
-            let total = 0;
-            carrito.forEach(item => {
-                total += item.precio;
-            });
-            carritoCount.textContent = carrito.length;
-            carritoTotal.textContent = total;
-        }
-
-        // Agregar evento a los botones de "Agregar al Carrito"
-        productos.forEach(producto => {
-            const btnAgregar = producto.querySelector('.btn-agregar');
-            btnAgregar.addEventListener('click', () => {
-                const precio = parseInt(producto.getAttribute('data-price'));
-                carrito.push({ precio });
-                actualizarCarrito();
-            });
-        });
-    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="productos.js"></script>
 
 </body>
 </html>
