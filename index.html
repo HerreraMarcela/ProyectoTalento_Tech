@@ -59,6 +59,26 @@
             border-radius: 8px;
             cursor: pointer;
         }
+        /* Estilos del formulario de login */
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .login-form input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .login-form button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -90,6 +110,19 @@
                 </ul>
             </div>
         </nav>
+
+        <!-- Formulario de Login -->
+        <div id="login-container" class="container">
+            <h4>Iniciar sesión</h4>
+            <form id="login-form" class="login-form">
+                <input type="email" id="email" placeholder="Correo electrónico" required>
+                <input type="password" id="password" placeholder="Contraseña" required>
+                <button type="submit">Ingresar</button>
+            </form>
+            <div id="logout" style="display: none;">
+                <p>Bienvenido, <span id="user-name"></span> <button id="logout-btn">Cerrar sesión</button></p>
+            </div>
+        </div>
     </header>
 
     <!-- Sección Principal (Hero) -->
@@ -148,5 +181,47 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="productos.js"></script>
 
+    <script>
+        // Simulación de un sistema de login
+        const loginForm = document.getElementById('login-form');
+        const loginContainer = document.getElementById('login-container');
+        const logoutContainer = document.getElementById('logout');
+        const userNameSpan = document.getElementById('user-name');
+        const logoutBtn = document.getElementById('logout-btn');
+        
+        // Mostrar el formulario de login si el usuario no está logueado
+        const mostrarLogin = () => {
+            loginContainer.style.display = 'block';
+            logoutContainer.style.display = 'none';
+        };
+
+        // Mostrar el usuario logueado
+        const mostrarUsuario = (email) => {
+            loginContainer.style.display = 'none';
+            logoutContainer.style.display = 'block';
+            userNameSpan.textContent = email;
+        };
+
+        // Evento para el login
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            localStorage.setItem('user', email); // Guardar usuario en localStorage
+            mostrarUsuario(email);
+        });
+
+        // Evento para el logout
+        logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('user');
+            mostrarLogin();
+        });
+
+        // Verificar si ya hay un usuario logueado
+        if (localStorage.getItem('user')) {
+            mostrarUsuario(localStorage.getItem('user'));
+        } else {
+            mostrarLogin();
+        }
+    </script>
 </body>
 </html>
