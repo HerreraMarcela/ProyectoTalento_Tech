@@ -168,106 +168,109 @@ header nav ul li a.active {
     color: #7f8c8d;
 }
 
-/* Sección Recetas */
-.recetas {
-    padding: 50px 0;
-    text-align: center;
-    background-color: #ffffff;
+/* Modal del carrito */
+#carrito-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
 }
 
-.recetas h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.5rem;
+#carrito-modal .modal-contenido {
+    background-color: white;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    max-height: 80%;
+    overflow-y: auto;
+    border-radius: 8px;
+}
+
+#carrito-modal .modal-contenido h2 {
+    font-size: 2rem;
     margin-bottom: 20px;
 }
 
-.recetas p {
-    font-size: 1.2rem;
-    margin-top: 20px;
+#carrito-modal .modal-contenido .carrito-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
 }
 
-.recetas .btn {
-    background-color: #2980b9;
+#carrito-modal .modal-contenido .carrito-item p {
+    margin: 0;
+}
+
+#carrito-modal .modal-contenido .btn-eliminar {
+    background-color: #e74c3c;
     color: white;
-    padding: 10px 20px;
-    text-decoration: none;
+    padding: 5px 10px;
+    font-size: 1rem;
+    border: none;
     border-radius: 5px;
-    font-weight: bold;
-    margin-top: 20px;
+    cursor: pointer;
     transition: background-color 0.3s;
 }
 
-.recetas .btn:hover {
-    background-color: #1d6ca1;
+#carrito-modal .modal-contenido .btn-eliminar:hover {
+    background-color: #c0392b;
 }
 
-/* Formulario de Contacto */
-.contacto {
-    padding: 50px 0;
-    background-color: #ecf0f1;
-}
-
-.contacto h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.contacto form {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-}
-
-.contacto form label {
-    font-size: 1.1rem;
-    font-family: 'Roboto', sans-serif;
-    display: block;
-    margin-top: 10px;
-}
-
-.contacto form input,
-.contacto form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.contacto form button {
-    background-color: #2980b9;
-    color: white;
-    font-size: 1rem;
+#carrito-modal .modal-contenido .carrito-total {
+    font-size: 1.5rem;
+    margin-top: 20px;
     font-weight: bold;
+    text-align: right;
+}
+
+#carrito-modal .modal-contenido button {
+    background-color: #2c3e50;
+    color: white;
+    font-size: 1.2rem;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     margin-top: 20px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
-.contacto form button:hover {
+#carrito-modal .modal-contenido button:hover {
     background-color: #1d6ca1;
 }
 
-/* Pie de página (Footer) */
-footer {
-    background-color: #2c3e50;
+/* Botón del carrito flotante */
+#carrito {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #2980b9;
     color: white;
-    text-align: center;
-    padding: 20px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+    z-index: 1000;
 }
 
-footer p {
-    margin: 0;
-    font-size: 1rem;
+#carrito:hover {
+    background: #1d6ca1;
+}
+
+#carrito span {
+    font-size: 1.2rem;
+}
+
+#carrito .icono {
+    font-size: 1.5rem;
+    margin-right: 8px;
 }
 
 /* Media Queries para Responsividad */
@@ -346,30 +349,4 @@ footer p {
     footer p {
         font-size: 0.9rem;
     }
-}
-
-/* Estilos para el carrito flotante */
-#carrito {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #2980b9;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-#carrito:hover {
-    background: #1d6ca1;
-}
-
-#carrito span {
-    font-size: 1.2rem;
-}
-
-#carrito .icono {
-    font-size: 1.5rem;
-    margin-right: 8px;
 }
