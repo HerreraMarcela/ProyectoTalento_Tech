@@ -44,7 +44,6 @@ function mostrarProducto(producto) {
         <div class="detalles" style="display: none;">
             <p>${producto.detalles}</p>
         </div>
-        <button class="btn-eliminar">Eliminar Producto</button>
         <button class="btn-agregar">Agregar al Carrito</button>
     `;
 
@@ -55,18 +54,22 @@ function mostrarProducto(producto) {
         detalles.style.display = detalles.style.display === 'none' ? 'block' : 'none';
     });
 
-    // Eliminar producto
-    const btnEliminar = divProducto.querySelector('.btn-eliminar');
-    btnEliminar.addEventListener('click', () => {
-        divProducto.remove();  // Elimina el producto del DOM
-    });
-
     // Agregar el producto al carrito
     const btnAgregar = divProducto.querySelector('.btn-agregar');
     btnAgregar.addEventListener('click', () => {
         const precio = producto.precio;
-        carrito.push({ precio });
-        actualizarCarrito();
+        const nombre = producto.nombre;
+
+        // Verificar si el producto ya está en el carrito
+        const productoEnCarrito = carrito.find(item => item.id === producto.id);
+        
+        if (productoEnCarrito) {
+            productoEnCarrito.cantidad += 1; // Si ya está, aumenta la cantidad
+        } else {
+            carrito.push({ id: producto.id, nombre, precio, cantidad: 1 }); // Si no está, agregarlo al carrito
+        }
+
+        actualizarCarrito();  // Actualizar la visualización del carrito
     });
 
     return divProducto;
@@ -84,16 +87,59 @@ function mostrarProductos() {
 let carrito = [];
 const carritoCount = document.getElementById('carrito-count');
 const carritoTotal = document.getElementById('carrito-total');
+const carritoList = document.getElementById('carrito-list');
 
 // Función para actualizar el carrito
 function actualizarCarrito() {
     let total = 0;
-    carrito.forEach(item => {
-        total += item.precio;
-    });
     carritoCount.textContent = carrito.length;
-    carritoTotal.textContent = total;
+
+    carritoTotal.textContent = carrito.reduce((acc, item) => {
+        acc += item.precio * item.cantidad;
+        return acc;
+    }, 0);
+
+    // Mostrar los productos en el carrito
+    carritoList.innerHTML = '';  // Limpiar el carrito antes de actualizar
+    carrito.forEach(item => {
+        const divItem = document.createElement('div');
+        divItem.classList.add('carrito-item');
+        divItem.innerHTML = `
+            <p>${item.nombre} x${item.cantidad} - $${item.precio * item.cantidad}</p>
+            <button class="btn-eliminar" data-id="${item.id}">Eliminar</button>
+        `;
+        
+        // Agregar el botón de eliminar para cada producto en el carrito
+        const btnEliminar = divItem.querySelector('.btn-eliminar');
+        btnEliminar.addEventListener('click', (e) => {
+            const productoId = parseInt(e.target.dataset.id);
+            eliminarDelCarrito(productoId);  // Eliminar el producto por su ID
+        });
+
+        carritoList.appendChild(divItem);
+    });
+}
+
+// Función para eliminar un producto del carrito
+function eliminarDelCarrito(productoId) {
+    // Filtramos el producto y lo eliminamos del carrito
+    carrito = carrito.filter(item => item.id !== productoId);
+    actualizarCarrito();
 }
 
 // Mostrar productos cuando la página cargue
 document.addEventListener('DOMContentLoaded', mostrarProductos);
+
+// Mostrar Carrito al hacer clic
+const carritoButton = document.getElementById('carrito');
+carritoButton.addEventListener('click', () => {
+    const carritoModal = document.getElementById('carrito-modal');
+    carritoModal.style.display = 'block';  // Mostrar el modal del carrito
+});
+
+// Cerrar el carrito cuando se hace clic en el botón de cerrar
+const cerrarCarritoButton = document.getElementById('cerrar-carrito');
+cerrarCarritoButton.addEventListener('click', () => {
+    const carritoModal = document.getElementById('carrito-modal');
+    carritoModal.style.display = 'none';  // Cerrar el modal del carrito
+});
