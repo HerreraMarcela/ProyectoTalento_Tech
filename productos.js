@@ -104,7 +104,7 @@ function actualizarCarrito() {
     carrito.forEach(item => {
         const divItem = document.createElement('div');
         divItem.classList.add('carrito-item');
-        divItem.innerHTML = `
+        divItem.innerHTML = ` 
             <p>${item.nombre} x${item.cantidad} - $${item.precio * item.cantidad}</p>
             <button class="btn-eliminar" data-id="${item.id}">Eliminar</button>
         `;
@@ -118,17 +118,27 @@ function actualizarCarrito() {
 
         carritoList.appendChild(divItem);
     });
+
+    // Guardar el carrito en el localStorage
+    localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
 // Función para eliminar un producto del carrito
 function eliminarDelCarrito(productoId) {
     // Filtramos el producto y lo eliminamos del carrito
     carrito = carrito.filter(item => item.id !== productoId);
-    actualizarCarrito();
+    actualizarCarrito(); // Actualizar la visualización del carrito y el localStorage
 }
 
-// Mostrar productos cuando la página cargue
-document.addEventListener('DOMContentLoaded', mostrarProductos);
+// Cargar el carrito desde localStorage al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    const carritoGuardado = localStorage.getItem('carrito');
+    if (carritoGuardado) {
+        carrito = JSON.parse(carritoGuardado);
+        actualizarCarrito(); // Actualizar la visualización del carrito con los productos guardados
+    }
+    mostrarProductos(); // Mostrar los productos en la página
+});
 
 // Mostrar Carrito al hacer clic
 const carritoButton = document.getElementById('carrito');
