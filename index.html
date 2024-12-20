@@ -79,6 +79,12 @@
             cursor: pointer;
             border-radius: 5px;
         }
+
+        /* Estilos para el iframe de Recetas */
+        #recetas-container {
+            margin-top: 30px;
+            height: 600px;
+        }
     </style>
 </head>
 <body>
@@ -99,7 +105,7 @@
                         <a class="nav-link" href="#productos">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#recetas">Recetas</a>
+                        <a class="nav-link" href="#recetas">Recetas</a> <!-- Enlace que lleva a la sección de Recetas -->
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#reseñas">Reseñas</a>
@@ -148,6 +154,17 @@
     <div id="carrito">
         Carrito: <span id="carrito-count">0</span> productos - Total: $<span id="carrito-total">0</span>
     </div>
+
+    <!-- Sección de Recetas con iframe -->
+    <section id="recetas" class="recetas">
+        <div class="container">
+            <h2>Recetas</h2>
+            <!-- Aquí es donde se carga el contenido de recetas.html usando iframe -->
+            <div id="recetas-container">
+                <iframe src="recetas.html" width="100%" height="600px" style="border: none;"></iframe>
+            </div>
+        </div>
+    </section>
 
     <!-- Formulario de Contacto -->
     <section id="contacto" class="contacto">
