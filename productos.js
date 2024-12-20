@@ -8,21 +8,24 @@ const productos = [
         nombre: 'Cerveza Pale Ale',
         descripcion: 'Una cerveza ligera y refrescante con notas afrutadas.',
         precio: 1500,
-        imagen: 'images/PaleALe.jpg'
+        imagen: 'images/PaleALe.jpg',
+        detalles: 'Cerveza de color dorado, con un sabor suave pero afrutado. Ideal para los que prefieren una cerveza ligera y refrescante.'
     },
     {
         id: 2,
         nombre: 'Cerveza IPA',
         descripcion: 'Intensa y amarga, con aromas cítricos y resinosos.',
         precio: 1800,
-        imagen: 'images/CervezaIpa.jpg'
+        imagen: 'images/CervezaIpa.jpg',
+        detalles: 'Una IPA potente, con un sabor amargo pronunciado, ideal para quienes disfrutan de cervezas con un toque cítrico y un final seco.'
     },
     {
         id: 3,
         nombre: 'Cerveza Stout',
         descripcion: 'Oscura y cremosa, con sabor a chocolate y café.',
         precio: 2000,
-        imagen: 'images/CervezaStout.jpg'
+        imagen: 'images/CervezaStout.jpg',
+        detalles: 'Cerveza oscura y espesa, con notas de café tostado y chocolate. Perfecta para los amantes de las cervezas robustas.'
     }
 ];
 
@@ -39,8 +42,9 @@ function mostrarProducto(producto) {
         <span class="precio">$${producto.precio}</span>
         <button class="btn-toggle">Ver más</button>
         <div class="detalles" style="display: none;">
-            <p>Más detalles sobre la cerveza...</p>
+            <p>${producto.detalles}</p>
         </div>
+        <button class="btn-eliminar">Eliminar Producto</button>
         <button class="btn-agregar">Agregar al Carrito</button>
     `;
 
@@ -49,6 +53,12 @@ function mostrarProducto(producto) {
     const detalles = divProducto.querySelector('.detalles');
     btnToggle.addEventListener('click', () => {
         detalles.style.display = detalles.style.display === 'none' ? 'block' : 'none';
+    });
+
+    // Eliminar producto
+    const btnEliminar = divProducto.querySelector('.btn-eliminar');
+    btnEliminar.addEventListener('click', () => {
+        divProducto.remove();  // Elimina el producto del DOM
     });
 
     // Agregar el producto al carrito
