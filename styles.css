@@ -120,6 +120,12 @@ header nav ul li a.active {
     padding: 20px;
     text-align: center;
     border-radius: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.productos .producto:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .productos .producto img {
@@ -340,4 +346,30 @@ footer p {
     footer p {
         font-size: 0.9rem;
     }
+}
+
+/* Estilos para el carrito flotante */
+#carrito {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #2980b9;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#carrito:hover {
+    background: #1d6ca1;
+}
+
+#carrito span {
+    font-size: 1.2rem;
+}
+
+#carrito .icono {
+    font-size: 1.5rem;
+    margin-right: 8px;
 }
