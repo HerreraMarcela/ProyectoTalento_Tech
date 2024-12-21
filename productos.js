@@ -1,7 +1,7 @@
 // Obtener el contenedor donde se agregarán los productos
 const productosLista = document.querySelector('.productos-lista');
 
-// Array de productos con sus propiedades
+// Array de productos con sus propiedades (Puedes obtenerlos de una API REST más tarde)
 const productos = [
     {
         id: 1,
