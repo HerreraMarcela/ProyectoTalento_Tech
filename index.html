@@ -10,7 +10,11 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Estilo para mostrar/ocultar detalles */
+        /* Estilos generales */
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        /* Estilos para mostrar/ocultar detalles */
         .detalles {
             display: none;
             margin-top: 10px;
@@ -23,10 +27,11 @@
             cursor: pointer;
             border-radius: 5px;
         }
-        .reseñas-lista, .productos-lista {
+        .productos-lista {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
+            justify-content: center;
         }
         .producto, .reseña {
             border: 1px solid #ddd;
@@ -35,8 +40,11 @@
             text-align: center;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
-        /* Estilos adicionales */
+        .producto:hover, .reseña:hover {
+            transform: scale(1.05);
+        }
         .producto img, .reseña img {
             max-width: 100%;
             border-radius: 8px;
@@ -49,6 +57,7 @@
             font-size: 1.2em;
             color: #f39c12;
         }
+        /* Estilos de carrito */
         #carrito {
             position: fixed;
             top: 20px;
@@ -85,6 +94,20 @@
             margin-top: 30px;
             height: 600px;
         }
+
+        /* Estilos de reseñas */
+        .reseñas-form input,
+        .reseñas-form textarea {
+            margin-bottom: 10px;
+        }
+
+        .reseñas-lista {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
     </style>
 </head>
 <body>
@@ -132,13 +155,13 @@
     </header>
 
     <!-- Sección Principal (Hero) -->
-    <section id="home" class="hero">
-        <div class="container">
+    <main id="home" class="hero">
+        <div class="container text-center">
             <h2>Bienvenidos a Beer & Beer</h2>
             <p>Las mejores cervezas artesanales, ¡Directo a tu hogar!</p>
-            <a href="#productos" class="btn">Ver Productos</a>
+            <a href="#productos" class="btn btn-primary">Ver Productos</a>
         </div>
-    </section>
+    </main>
 
     <!-- Productos -->
     <section id="productos" class="productos">
@@ -159,9 +182,24 @@
     <section id="recetas" class="recetas">
         <div class="container">
             <h2>Recetas</h2>
-            <!-- Aquí es donde se carga el contenido de recetas.html usando iframe -->
             <div id="recetas-container">
                 <iframe src="recetas.html" width="100%" height="600px" style="border: none;"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reseñas -->
+    <section id="reseñas" class="reseñas">
+        <div class="container">
+            <h2>Reseñas de nuestros clientes</h2>
+            <div class="reseñas-form">
+                <h3>¡Deja tu reseña!</h3>
+                <input type="text" id="nombre-reseña" placeholder="Tu nombre" required>
+                <textarea id="texto-reseña" placeholder="Escribe tu reseña..." required></textarea>
+                <button id="enviar-reseña" class="btn btn-primary">Enviar</button>
+            </div>
+            <div class="reseñas-lista" id="reseñas-lista">
+                <!-- Aquí se generarán las reseñas dinámicamente con JS -->
             </div>
         </div>
     </section>
@@ -187,7 +225,7 @@
 
     <!-- Pie de página (Footer) -->
     <footer>
-        <div class="container">
+        <div class="container text-center">
             <p>&copy; 2024 Beer & Beer. Todos los derechos reservados.</p>
         </div>
     </footer>
@@ -239,6 +277,43 @@
         } else {
             mostrarLogin();
         }
+
+        // Función para guardar y mostrar reseñas
+        const mostrarReseñas = () => {
+            const reseñas = JSON.parse(localStorage.getItem('reseñas')) || [];
+            const reseñasLista = document.getElementById('reseñas-lista');
+            reseñasLista.innerHTML = '';
+            reseñas.forEach(reseña => {
+                const div = document.createElement('div');
+                div.classList.add('reseña');
+                div.innerHTML = `
+                    <h3>${reseña.nombre}</h3>
+                    <p>${reseña.texto}</p>
+                `;
+                reseñasLista.appendChild(div);
+            });
+        };
+
+        // Guardar reseña en localStorage
+        const enviarReseñaBtn = document.getElementById('enviar-reseña');
+        enviarReseñaBtn.addEventListener('click', () => {
+            const nombre = document.getElementById('nombre-reseña').value;
+            const texto = document.getElementById('texto-reseña').value;
+            
+            if (nombre && texto) {
+                const reseñas = JSON.parse(localStorage.getItem('reseñas')) || [];
+                reseñas.push({ nombre, texto });
+                localStorage.setItem('reseñas', JSON.stringify(reseñas));
+                mostrarReseñas();
+                document.getElementById('nombre-reseña').value = '';
+                document.getElementById('texto-reseña').value = '';
+            } else {
+                alert('Por favor completa todos los campos');
+            }
+        });
+
+        // Mostrar reseñas al cargar la página
+        mostrarReseñas();
     </script>
 </body>
 </html>
