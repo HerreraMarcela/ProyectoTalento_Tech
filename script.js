@@ -201,6 +201,8 @@ if (vaciarCarritoBtn) {
 
 //----- API POKEMON----//
 
+//----- API POKEMON----//
+
 document.getElementById('pokemon-api-link').addEventListener('click', async function(e) {
     e.preventDefault(); // Evita que el enlace haga la navegación predeterminada
 
@@ -228,19 +230,4 @@ document.getElementById('pokemon-api-link').addEventListener('click', async func
 // Función para generar un número aleatorio dentro de un rango
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// Función para recomendar una cerveza según el tipo de Pokémon
-function getBeerRecommendation(pokemonType) {
-    if (pokemonType.includes('fire')) {
-        return 'Cerveza IPA (fuerte y amargosa)';
-    } else if (pokemonType.includes('water')) {
-        return 'Cerveza Lager (ligera y refrescante)';
-    } else if (pokemonType.includes('grass')) {
-        return 'Cerveza Artesanal (sabores intensos)';
-    } else if (pokemonType.includes('electric')) {
-        return 'Cerveza Pilsner (fresca y ligera)';
-    } else {
-        return 'Cerveza Lager (ligera y versátil)';
-    }
 }
