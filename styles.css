@@ -1,102 +1,101 @@
-/* Estilos para los productos */
-.productos .producto {
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 30%;
-    margin-bottom: 30px;
-    padding: 20px;
-    text-align: center;
-    border-radius: 5px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Efecto al pasar el ratón */
-.productos .producto:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Imagen de los productos */
-.productos .producto img {
+/* Estilos para los inputs y textarea */
+.form-group input,
+.form-group textarea {
     width: 100%;
-    height: auto;
+    padding: 12px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    object-fit: cover;
-}
-
-/* Títulos y descripción */
-.productos .producto h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.8rem;
-    margin-top: 15px;
-    color: #2c3e50;
-}
-
-/* Descripción corta */
-.productos .producto p {
     font-size: 1rem;
-    color: #7f8c8d;
-    margin-top: 10px;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
 }
 
-/* Botón de agregar al carrito */
-.productos .producto .btn-agregar {
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #2980b9;
+    outline: none;
+}
+
+/* Estilos para el botón de enviar */
+.btn-enviar {
     background-color: #2980b9;
-    color: white;
-    padding: 10px 20px;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
     border-radius: 5px;
-    font-weight: bold;
-    text-decoration: none;
-    margin-top: 20px;
+    font-size: 1.2rem;
+    width: 100%;
+    cursor: pointer;
     transition: background-color 0.3s;
 }
 
-/* Cambio de color en hover */
-.productos .producto .btn-agregar:hover {
+.btn-enviar:hover {
     background-color: #1d6ca1;
 }
 
-/* Botón de ver más detalles */
-.productos .producto .btn-toggle {
-    background-color: #f39c12;
+/* Estilos de respuesta del formulario */
+#formulario-contacto.success input,
+#formulario-contacto.success textarea {
+    background-color: #eaf7ea;
+    border-color: #2ecc71;
+}
+
+#formulario-contacto.error input,
+#formulario-contacto.error textarea {
+    background-color: #f9d6d5;
+    border-color: #e74c3c;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    #contacto {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    #contacto h2 {
+        font-size: 1.8rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.9rem;
+    }
+
+    .btn-enviar {
+        font-size: 1rem;
+    }
+}
+html {
+    scroll-behavior: smooth;
+}
+/* Estilos del carrito flotante */
+.carrito {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #333;
     color: white;
-    padding: 8px 16px;
-    border-radius: 5px;
-    font-weight: bold;
-    margin-top: 15px;
-    transition: background-color 0.3s;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
-/* Cambio de color en hover para el botón "Ver más" */
-.productos .producto .btn-toggle:hover {
-    background-color: #e67e22;
-}
-
-/* Descripción adicional del producto */
-.productos .producto .detalles {
-    display: none;
-    margin-top: 15px;
-    color: #7f8c8d;
-    font-size: 0.95rem;
-}
-
-/* Para el modal del carrito */
+/* Estilos del modal del carrito */
 #carrito-modal {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
-    display: none;
+    z-index: 1001;
     justify-content: center;
     align-items: center;
-    z-index: 999;
 }
 
-#carrito-modal .modal-contenido {
+#carrito-modal .modal-content {
     background-color: white;
     padding: 20px;
     width: 80%;
@@ -106,157 +105,119 @@
     border-radius: 8px;
 }
 
-#carrito-modal .modal-contenido h2 {
-    font-size: 2rem;
+#carrito-modal .modal-content button {
+    background-color: #f39c12;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+#carrito-modal .modal-content button:hover {
+    background-color: #e67e22;
+}
+.producto {
     margin-bottom: 20px;
-}
-
-/* Botones del carrito */
-#carrito-modal .modal-contenido button {
-    background-color: #2c3e50;
-    color: white;
-    font-size: 1.2rem;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    margin-top: 20px;
-    cursor: pointer;
-}
-
-#carrito-modal .modal-contenido button:hover {
-    background-color: #1d6ca1;
-}
-
-/* Botón del carrito flotante */
-#carrito {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #2980b9;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s;
-    z-index: 1000;
-}
-
-#carrito:hover {
-    background: #1d6ca1;
-}
-
-#carrito span {
-    font-size: 1.2rem;
-}
-
-#carrito .icono {
-    font-size: 1.5rem;
-    margin-right: 8px;
-}
-
-/* Estilos para las reseñas */
-.reseñas .reseña {
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 30%;
-    margin-bottom: 30px;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Necesario para que el botón se posicione en relación con la imagen */
 }
 
-.reseñas .reseña:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+.producto img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
 }
 
-.reseñas .reseña h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.6rem;
-    margin-bottom: 15px;
-    color: #2c3e50;
+.precio {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
 }
 
-.reseñas .reseña p {
-    font-size: 1rem;
-    color: #7f8c8d;
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
 }
 
-/* Estilos para el formulario de login */
-#login-container {
-    margin: 20px 0;
+.btn-ver-detalles {
+    background-color: #007bff;
+    color: white;
 }
 
-.login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.login-form input {
+.btn-agregar {
+    position: absolute; /* Coloca el botón sobre la imagen */
+    top: 10px; /* Distancia desde la parte superior */
+    left: 10px; /* Distancia desde la parte izquierda */
+    background-color: #28a745;
+    color: white;
+    font-size: 18px;
     padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    border-radius: 50%; /* Hace que el botón sea redondo */
+    width: 40px; /* Ancho del botón */
+    height: 40px; /* Alto del botón */
+    border: none;
+    cursor: pointer;
 }
 
-.login-form button {
-    background-color: #2980b9;
+button:hover {
+    opacity: 0.8;
+}
+img.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;  /* Para hacerlas circulares, si es necesario */
+}
+#vaciar-carrito {
+    background-color: #e74c3c;
     color: white;
     border: none;
-    padding: 10px;
-    cursor: pointer;
+    padding: 10px 20px;
     border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
 }
 
-.login-form button:hover {
-    background-color: #1d6ca1;
+#vaciar-carrito:hover {
+    background-color: #c0392b;
 }
 
-/* Para pantallas medianas (tabletas) */
-@media (max-width: 768px) {
-    .productos .productos-lista,
-    .reseñas .reseñas-lista {
-        flex-direction: column;
-        align-items: center;
-    }
 
-    .productos .producto,
-    .reseñas .reseña {
-        width: 80%;
-        margin-bottom: 20px;
-    }
-
-    #carrito {
-        right: 15px;
-        top: 15px;
-    }
+/* Estilos para la lista de personajes */
+#rick-and-morty-list {
+    margin-top: 20px;
 }
 
-/* Para pantallas pequeñas (móviles) */
-@media (max-width: 480px) {
-    body {
-        font-size: 14px;
-    }
+.list-group-item {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-    .productos .producto h3,
-    .reseñas .reseña h3 {
-        font-size: 1.5rem;
-    }
+.list-group-item img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+}
 
-    .productos .producto p,
-    .reseñas .reseña p {
-        font-size: 0.9rem;
-    }
+.list-group-item h5 {
+    font-size: 1.5em;
+    color: #343a40;
+}
 
-    .productos .producto .btn-agregar,
-    .productos .producto .btn-toggle {
-        font-size: 0.9rem;
-    }
+.list-group-item p {
+    font-size: 1.1em;
+    color: #666;
+}
 
-    #carrito {
-        font-size: 0.9rem;
-        padding: 8px 16px;
-    }
+.list-group-item strong {
+    color: #f39c12;
 }
