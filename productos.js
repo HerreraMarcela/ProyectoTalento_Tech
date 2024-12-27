@@ -153,3 +153,6 @@ cerrarCarritoButton.addEventListener('click', () => {
     const carritoModal = document.getElementById('carrito-modal');
     carritoModal.style.display = 'none';  // Cerrar el modal del carrito
 });
+
+
+

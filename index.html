@@ -1,39 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beer & Beer</title>
-    <!-- Carga de las fuentes desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto:wght@400&display=swap" rel="stylesheet">
-    <!-- Carga de Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Estilos generales */
         body {
             font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
         }
-        /* Estilos para mostrar/ocultar detalles */
-        .detalles {
-            display: none;
-            margin-top: 10px;
+
+        header {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px 0;
         }
-        .btn-toggle {
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
+
         .productos-lista {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
         }
-        .producto, .reseña {
+
+        .producto {
             border: 1px solid #ddd;
             padding: 15px;
             width: 30%;
@@ -42,21 +36,40 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
-        .producto:hover, .reseña:hover {
+
+        .producto:hover {
             transform: scale(1.05);
         }
-        .producto img, .reseña img {
+
+        .producto img {
             max-width: 100%;
             border-radius: 8px;
         }
-        .reseña h3, .producto h3 {
-            font-size: 1.5em;
-            margin-top: 10px;
-        }
+
         .precio {
             font-size: 1.2em;
             color: #f39c12;
         }
+
+        .detalles {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .btn-toggle {
+            background-color: #f39c12;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .btn-toggle:hover {
+            background-color: #e67e22;
+        }
+
         /* Estilos de carrito */
         #carrito {
             position: fixed;
@@ -68,6 +81,7 @@
             border-radius: 8px;
             cursor: pointer;
         }
+
         /* Estilos del formulario de login */
         .login-form {
             display: flex;
@@ -75,11 +89,13 @@
             gap: 10px;
             margin-bottom: 20px;
         }
+
         .login-form input {
             padding: 10px;
             border-radius: 5px;
             border: 1px solid #ccc;
         }
+
         .login-form button {
             background-color: #333;
             color: white;
@@ -87,12 +103,6 @@
             padding: 10px;
             cursor: pointer;
             border-radius: 5px;
-        }
-
-        /* Estilos para el iframe de Recetas */
-        #recetas-container {
-            margin-top: 30px;
-            height: 600px;
         }
 
         /* Estilos de reseñas */
@@ -108,10 +118,23 @@
             justify-content: center;
         }
 
+        /* Estilos para las recetas */
+        .receta {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        .receta h3 {
+            color: #f39c12;
+        }
     </style>
 </head>
-<body>
 
+<body>
+    
     <!-- Cabecera (Header) -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -121,14 +144,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
+                    <li class=" nav-item active">
                         <a class="nav-link" href="#home">Inicio <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#productos">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#recetas">Recetas</a> <!-- Enlace que lleva a la sección de Recetas -->
+                        <a class="nav-link" href="#recetas">Recetas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#reseñas">Reseñas</a>
@@ -136,184 +159,318 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#contacto">Contacto</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="pokemon-api-link">Cervecerías Divertidas (API)</a>
+                    </li>
                 </ul>
             </div>
         </nav>
-
-        <!-- Formulario de Login -->
-        <div id="login-container" class="container">
-            <h4>Iniciar sesión</h4>
-            <form id="login-form" class="login-form">
-                <input type="email" id="email" placeholder="Correo electrónico" required>
-                <input type="password" id="password" placeholder="Contraseña" required>
-                <button type="submit">Ingresar</button>
-            </form>
-            <div id="logout" style="display: none;">
-                <p>Bienvenido, <span id="user-name"></span> <button id="logout-btn">Cerrar sesión</button></p>
-            </div>
-        </div>
     </header>
 
-    <!-- Sección Principal (Hero) -->
-    <main id="home" class="hero">
-        <div class="container text-center">
-            <h2>Bienvenidos a Beer & Beer</h2>
-            <p>Las mejores cervezas artesanales, ¡Directo a tu hogar!</p>
-            <a href="#productos" class="btn btn-primary">Ver Productos</a>
+    <!-- Contenedor para la lista de cervecerías API-->
+    <div id="pokemon-beer-container" class="container">
+        <title>Recomendación de Cerveza Pokémon</title>
+    </head>
+    <body>
+        <h1>Recomendación de Cerveza Pokémon</h1>
+       
+    
+        <div>
+            <p id="pokemon-name"></p>
+            <p id="pokemon-type"></p>
+            <p id="recommended-beer"></p>
         </div>
-    </main>
-
-    <!-- Productos -->
-    <section id="productos" class="productos">
-        <div class="container">
-            <h2>Nuestros Productos</h2>
-            <div class="productos-lista">
-                <!-- Aquí se generarán los productos dinámicamente con JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Carrito -->
-    <div id="carrito">
-        Carrito: <span id="carrito-count">0</span> productos - Total: $<span id="carrito-total">0</span>
     </div>
+    
 
-    <!-- Sección de Recetas con iframe -->
-    <section id="recetas" class="recetas">
-        <div class="container">
-            <h2>Recetas</h2>
-            <div id="recetas-container">
-                <iframe src="recetas.html" width="100%" height="600px" style="border: none;"></iframe>
+
+    <!-- Sección de Productos -->
+    <section id="productos" class="container mt-5">
+        <h2 class="text-center">Nuestros Productos</h2>
+        <div class="productos-lista">
+            <div class="producto">
+                <div class="btn-agregar-container">
+                    <button class="btn-agregar">+</button>
+                </div>
+                <img src="Images/Cervezaartesanal1.jpeg" alt="Cerveza Artesanal">
+                <h3>Cerveza Artesanal</h3>
+                <p class="precio">$1600</p>
+                <button class="btn-toggle">Ver Detalles</button>
+                <div class="detalles">
+                    <p><strong>Descripción:</strong> Cerveza artesanal elaborada con ingredientes naturales, ideal para los amantes de los sabores intensos.</p>
+                    <p><strong>Ingredientes:</strong> Malta de cebada, lúpulo, levadura, agua.</p>
+                    <p><strong>Recomendación:</strong> Ideal para acompañar platos a base de carnes y quesos curados.</p>
+                    <p><strong>Grados de Alcohol:</strong> 6.5%</p>
+                </div>
+            </div>
+            <div class="producto">
+                <div class="btn-agregar-container">
+                    <button class="btn-agregar">+</button>
+                </div>
+                <img src="Images/Lager.jpeg" alt="Cerveza Lager">
+                <h3>Cerveza Lager</h3>
+                <p class="precio">$1400</p>
+                <button class="btn-toggle">Ver Detalles</button>
+                <div class="detalles">
+                    <p><strong>Descripción:</strong> Cerveza lager refrescante y ligera, perfecta para disfrutar en cualquier momento.</p>
+                    <p><strong>Ingredientes:</strong> Malta de cebada, lúpulo, levadura, agua.</p>
+                    <p><strong>Recomendación:</strong> Combina muy bien con mariscos, ensaladas y aperitivos.</p>
+                    <p><strong>Grados de Alcohol:</strong> 5.0%</p>
+                </div>
+            </div>
+            <div class="producto">
+                <div class="btn-agregar-container">
+                    <button class="btn-agregar">+</button>
+                </div>
+                <img src="Images/ipa.jpeg" alt="Cerveza IPA">
+                <h3>Cerveza IPA</h3>
+                <p class="precio">$1900</p> 
+                
+                <button class="btn-toggle">Ver Detalles</button>
+                <div class="detalles">
+                    <p><strong>Descripción:</strong> Cerveza IPA de sabor fuerte y amargo, ideal para quienes buscan una experiencia única.</p>
+                    <p><strong>Ingredientes:</strong> Malta de cebada, lúpulo, levadura, agua.</p>
+                    <p><strong>Recomendación:</strong> Excelente para acompañar platos con sabores intensos, como curry o carnes especiadas.</p>
+                    <p><strong>Grados de Alcohol:</strong> 7.0%</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Reseñas -->
-    <section id="reseñas" class="reseñas">
-        <div class="container">
-            <h2>Reseñas de nuestros clientes</h2>
-            <div class="reseñas-form">
-                <h3>¡Deja tu reseña!</h3>
-                <input type="text" id="nombre-reseña" placeholder="Tu nombre" required>
-                <textarea id="texto-reseña" placeholder="Escribe tu reseña..." required></textarea>
-                <button id="enviar-reseña" class="btn btn-primary">Enviar</button>
-            </div>
-            <div class="reseñas-lista" id="reseñas-lista">
-                <!-- Aquí se generarán las reseñas dinámicamente con JS -->
-            </div>
+    <!-- Sección de Recetas -->
+    <section id="recetas" class="container mt-5">
+        
+        <h2 class="text-center">Recetas de Cerveza</h2>
+        <div class="receta">
+            <h3>Receta Cerveza Artesanal</h3>
+            <p><strong>Ingredientes:</strong></p>
+            <ul>
+                <li>5 kg de Malta de cebada</li>
+                <li>50 g de Lúpulo</li>
+                <li>1 cucharadita de Levadura</li>
+                <li>20 litros de Agua</li>
+            </ul>
+            <p><strong>Instrucciones:</strong></p>
+            <ol>
+                <li>Calienta el agua a 65°C y agrega la malta.</li>
+                <li>Deja reposar la mezcla durante 60 minutos.</li>
+                <li>Hierve la mezcla y agrega el lúpulo a los 30 minutos.</li>
+                <li>Fermenta durante 7-10 días a 18-22°C.</li>
+            </ol>
+        </div>
+        <div class="receta">
+            <h3>Receta Cerveza Lager</h3>
+            <p><strong>Ingredientes:</strong></p>
+            <ul>
+                <li>4 kg de Malta de cebada</li>
+                <li>40 g de Lúpulo</li>
+                <li>1 cucharadita de Levadura Lager</li>
+                <li>20 litros de Agua</li>
+            </ul>
+            <p><strong>Instrucciones:</strong></p>
+            <ol>
+                <li>Calienta el agua a 70°C y agrega la malta.</li>
+                <li>Deja reposar durante 90 minutos.</li>
+                <li>Hierve la mezcla y agrega el lúpulo.</li>
+                <li>Fermenta a 8°C durante 14 días.</li>
+            </ol>
+        </div>
+        <div class="receta">
+            <h3>Receta Cerveza IPA</h3>
+            <p><strong>Ingredientes:</strong></p>
+            <ul>
+                <li>6 kg de Malta de cebada</li>
+                <li>70 g de Lúpulo</li>
+                <li>1 cucharadita de Levadura Ale</li>
+                <li>20 litros de Agua</li>
+            </ul>
+            <p><strong>Instrucciones:</strong></p>
+            <ol>
+                <li>Calienta el agua a 68°C y agrega la malta.</li>
+                <li>Deja reposar durante 60 minutos.</li>
+                <li>Hierve la mezcla y agrega el lúpulo durante los 60 minutos de hervor.</li>
+                <li>Fermenta durante 10 días a 18-20°C.</li>
+            </ol>
         </div>
     </section>
 
-    <!-- Formulario de Contacto -->
-    <section id="contacto" class="contacto">
-        <div class="container">
-            <h2>Contáctanos</h2>
-            <form action="https://formspree.io/f/xldejevz" method="POST">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
+    <!-- Sección de Reseñas -->
+    <section id="reseñas">
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+        <h2 class="text-center">Reseñas de Clientes</h2>
 
-                <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" required></textarea>
+        <div class="reseñas-lista">
+            <div class="reseña">
+                <img class="avatar" src="Images/Avatar1.jpg" alt="Avatar 1">
+                <h3>Juan Pérez</h3>
+                <p>"Una cerveza increíble, con un sabor único que me sorprendió."</p>
+            </div>
+            <div class="reseña">
+                <img class="avatar" src="Images/Avatar2.jpg" alt="Avatar 2">
+                <h3>Ana García</h3>
+                <p>"Perfecta para disfrutar en una tarde de verano. ¡La mejor opción!"</p>
+            </div>
+        </div>
 
-                <button type="submit">Enviar</button>
+
+    
+        <!-- Formulario de reseña -->
+        <div class="formulario-reseña">
+            <h3>Escribe tu Reseña</h3>
+            <form>
+                <textarea placeholder="Escribe tu reseña aquí..." required></textarea>
+                <button type="submit">Enviar Reseña</button>
             </form>
         </div>
     </section>
 
-    <!-- Pie de página (Footer) -->
-    <footer>
-        <div class="container text-center">
-            <p>&copy; 2024 Beer & Beer. Todos los derechos reservados.</p>
+    <!-- Sección de Contacto -->
+    <section id="contacto" class="contacto">
+        <div class="container">
+            <h2>Contacto</h2>
+            <p>¡Queremos saber tu opinión! Déjanos tu mensaje y nos pondremos en contacto contigo.</p>
+    
+            <!-- Formulario de contacto -->
+            <form action="https://formspree.io/f/xldejevz" method="POST" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Nombre</label 
+html
+                    <input type="text" id="name" name="name" required placeholder="Ingresa tu nombre">
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" required placeholder="Ingresa tu correo electrónico">
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje</label>
+                    <textarea id="message" name="message" required placeholder="Escribe tu mensaje aquí" rows="5"></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Enviar</button>
+            </form>
         </div>
+    </section>
+
+    <!-- Pie de Página -->
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 Beer & Beer. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Incluir el archivo JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="productos.js"></script>
-
     <script>
-        // Simulación de un sistema de login
-        const loginForm = document.getElementById('login-form');
-        const loginContainer = document.getElementById('login-container');
-        const logoutContainer = document.getElementById('logout');
-        const userNameSpan = document.getElementById('user-name');
-        const logoutBtn = document.getElementById('logout-btn');
-        
-        // Mostrar el formulario de login si el usuario no está logueado
-        const mostrarLogin = () => {
-            loginContainer.style.display = 'block';
-            logoutContainer.style.display = 'none';
-        };
-
-        // Mostrar el usuario logueado
-        const mostrarUsuario = (email) => {
-            loginContainer.style.display = 'none';
-            logoutContainer.style.display = 'block';
-            userNameSpan.textContent = email;
-        };
-
-        // Evento para el login
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            localStorage.setItem('user', email); // Guardar usuario en localStorage
-            mostrarUsuario(email);
-        });
-
-        // Evento para el logout
-        logoutBtn.addEventListener('click', () => {
-            localStorage.removeItem('user');
-            mostrarLogin();
-        });
-
-        // Verificar si ya hay un usuario logueado
-        if (localStorage.getItem('user')) {
-            mostrarUsuario(localStorage.getItem('user'));
-        } else {
-            mostrarLogin();
-        }
-
-        // Función para guardar y mostrar reseñas
-        const mostrarReseñas = () => {
-            const reseñas = JSON.parse(localStorage.getItem('reseñas')) || [];
-            const reseñasLista = document.getElementById('reseñas-lista');
-            reseñasLista.innerHTML = '';
-            reseñas.forEach(reseña => {
-                const div = document.createElement('div');
-                div.classList.add('reseña');
-                div.innerHTML = `
-                    <h3>${reseña.nombre}</h3>
-                    <p>${reseña.texto}</p>
-                `;
-                reseñasLista.appendChild(div);
+        // Mostrar detalles del producto
+        document.querySelectorAll('.btn-toggle').forEach(button => {
+            button.addEventListener('click', function () {
+                const detalles = this.nextElementSibling;
+                detalles.style.display = detalles.style.display === 'block' ? 'none' : 'block';
             });
-        };
-
-        // Guardar reseña en localStorage
-        const enviarReseñaBtn = document.getElementById('enviar-reseña');
-        enviarReseñaBtn.addEventListener('click', () => {
-            const nombre = document.getElementById('nombre-reseña').value;
-            const texto = document.getElementById('texto-reseña').value;
-            
-            if (nombre && texto) {
-                const reseñas = JSON.parse(localStorage.getItem('reseñas')) || [];
-                reseñas.push({ nombre, texto });
-                localStorage.setItem('reseñas', JSON.stringify(reseñas));
-                mostrarReseñas();
-                document.getElementById('nombre-reseña').value = '';
-                document.getElementById('texto-reseña').value = '';
-            } else {
-                alert('Por favor completa todos los campos');
-            }
         });
-
-        // Mostrar reseñas al cargar la página
-        mostrarReseñas();
     </script>
+    
+<!-- Carrito de Compras como botón -->
+<button id="carrito" class="carrito">
+    🛒 <span id="cantidad-carrito">0</span> Productos - $<span id="total-carrito">0.00</span>
+</button>
+
+<!-- Modal del carrito -->
+<div id="carrito-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <h3>Tu Carrito</h3>
+        <div id="lista-carrito"></div>
+        <button id="vaciar-carrito" class="btn-toggle">Vaciar Carrito</button>
+        <button id="cerrar-carrito" class="btn-toggle">Cerrar</button>
+    </div>
+</div>
+
+<!-- Script del carrito -->
+<script>
+    // Variables del carrito
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    // Elementos DOM
+    const cantidadCarrito = document.getElementById('cantidad-carrito');
+    const totalCarrito = document.getElementById('total-carrito');
+    const carritoModal = document.getElementById('carrito-modal');
+    const listaCarrito = document.getElementById('lista-carrito');
+    const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
+    const cerrarCarritoBtn = document.getElementById('cerrar-carrito');
+    const carritoBtn = document.getElementById('carrito');
+
+    // Mostrar el carrito
+    function mostrarCarrito() {
+        // Actualizar cantidad y total en el carrito flotante
+        cantidadCarrito.textContent = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+        const total = carrito.reduce((acc, producto) => acc + producto.precio * producto.cantidad, 0);
+        totalCarrito.textContent = total.toFixed(2);
+
+        // Mostrar los productos en el modal
+        listaCarrito.innerHTML = '';
+        carrito.forEach(producto => {
+            const productoElement = document.createElement('div');
+            productoElement.classList.add('producto-carrito');
+            productoElement.innerHTML = 
+                `<p>${producto.nombre} x${producto.cantidad} - $${(producto.precio * producto.cantidad).toFixed(2)}</p>`;
+            listaCarrito.appendChild(productoElement);
+        });
+    }
+    
+    // Añadir producto al carrito
+    function añadirAlCarrito(producto) {
+        const indice = carrito.findIndex(item => item.id === producto.id);
+        if (indice !== -1) {
+            carrito[indice].cantidad += 1;  // Aumentar la cantidad si ya existe
+        } else {
+            carrito.push({...producto, cantidad: 1});  // Añadir producto nuevo
+        }
+        localStorage.setItem('carrito', JSON.stringify(carrito));  // Guardar carrito en localStorage
+        mostrarCarrito();  // Actualizar la vista del carrito
+    }
+
+    // Mostrar el carrito al hacer clic en el botón del carrito
+    carritoBtn.addEventListener('click', function () {
+        carritoModal.style.display = 'block';  // Mostrar el modal del carrito
+        mostrarCarrito();  // Mostrar el contenido actualizado del carrito
+    });
+
+    // Cerrar el modal del carrito
+    cerrarCarritoBtn.addEventListener('click', function () {
+        carritoModal.style.display = 'none';  // Ocultar el modal
+    });
+
+    // Vaciar el carrito
+    vaciarCarritoBtn.addEventListener('click', function () {
+        carrito = [];  // Limpiar el carrito
+        localStorage.setItem('carrito', JSON.stringify(carrito));  // Guardar el carrito vacío
+        mostrarCarrito();  // Actualizar la vista del carrito
+    });
+
+    // Para cada producto en la página, agregar un botón para añadir al carrito
+    document.querySelectorAll('.btn-agregar').forEach(boton => {
+        boton.addEventListener('click', function () {
+            // Obtener los datos del producto desde el contenedor
+            const producto = this.closest('.producto');
+            const id = producto.getAttribute('data-id');
+            const nombre = producto.getAttribute('data-nombre');
+            const precio = parseFloat(producto.getAttribute('data-precio'));
+
+            // Crear el objeto producto
+            const productoObj = {
+                id: id,
+                nombre: nombre,
+                precio: precio
+            };
+
+            // Llamar a la función para añadir el producto al carrito
+            añadirAlCarrito(productoObj);
+        });
+    });
+
+    // Mostrar el carrito al cargar la página si ya hay productos guardados en el carrito
+    mostrarCarrito();
+</script>
+
+
+    <script src="script.js"></script>
 </body>
 </html>
